@@ -19,6 +19,7 @@
         @* We can use this method to change the title of the label <label>Date of Birth</label>  *@
         @Html.LabelFor(m => m.Customer.BirthDay)
         @Html.TextBoxFor(m => m.Customer.BirthDay, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=> m.Customer.BirthDay)
 
     </div>
 
@@ -30,6 +31,7 @@
        new SelectList(Model.MembershipTypes, "Id", "Name"),
        "Select Membership Type",
        new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
 
     </div>
 
