@@ -340,6 +340,10 @@
     <Compile Include="Migrations\202207031126430_PopulateGenre.designer.cs">
       <DependentUpon>202207031126430_PopulateGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207071017334_UpdateNameInMembershipType.cs" />
+    <Compile Include="Migrations\202207071017334_UpdateNameInMembershipType.designer.cs">
+      <DependentUpon>202207071017334_UpdateNameInMembershipType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -482,6 +486,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207031126430_PopulateGenre.resx">
       <DependentUpon>202207031126430_PopulateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207071017334_UpdateNameInMembershipType.resx">
+      <DependentUpon>202207071017334_UpdateNameInMembershipType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -45,13 +45,16 @@ namespace Vidly.Controllers
 
             var membershipTypes = _context.MembershipTypes.ToList();
 
-            var viewModel= new CustomerFormViewModel
-                { MembershipTypes = membershipTypes };
+            var viewModel = new CustomerFormViewModel
+            { Customer = new Customer(), 
+                MembershipTypes = membershipTypes 
+            };
 
             return View("CustomerForm",viewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             if (!ModelState.IsValid)
@@ -60,15 +63,16 @@ namespace Vidly.Controllers
                 {
 
                     Customer = customer,
-                    MembershipTypes = _context.MembershipTypes.ToList()   
+                    MembershipTypes = _context.MembershipTypes.ToList()
 
                 };
-                return View("CustomerForm",viewModel); 
+                return View("CustomerForm", viewModel);
             }
 
             if (customer.Id==0)
             {
                 _context.Customers.Add(customer);
+                _context.SaveChanges();
             }
             else
             {
@@ -77,17 +81,17 @@ namespace Vidly.Controllers
                 customerInDb.Name= customer.Name;
                 customerInDb.BirthDay = customer.BirthDay;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
-                customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;  
+                customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
 
 
-
+                _context.SaveChanges();
                 // this is microsoft way to update objects in DB but it has secuirty issues.
-              //  TryUpdateModel(customerInDb);
+                //  TryUpdateModel(customerInDb);
 
             }
 
           //  _context.Customers.Add(customer);
-            _context.SaveChanges();
+           // _context.SaveChanges();
 
 
             return RedirectToAction("Index","Customer");
